@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name='decorr',
-      version='0.1',
+      version='0.1.1',
       description='Decorrelates variable from a pandas dataframe.',
-      url='',
+      url='https://github.com/eddbrown/decorr',
       author='Edward Brown',
       author_email='edward.j.e.brown@gmail.com',
       packages=['decorr'],
