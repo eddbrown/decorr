@@ -1,8 +1,8 @@
-#Decorr Package
+# Decorr Package
 
 This Package aims to help data scientist using python to easily decorrelate their data set from a variable.
 
-#LinearDecorrelator
+# LinearDecorrelator
 
 The first class for this package is the LinearDecorrelator class.
 The functionality follows the scikit learn format of fit and transform
