@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='decorr',
-      version='0.2',
+      version='0.3',
       description='Decorrelates variable from a pandas dataframe.',
       url='https://github.com/eddbrown/decorr',
       author='Edward Brown',
