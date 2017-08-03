@@ -2,18 +2,27 @@ import pandas as pd
 import numpy as np
 
 class LinearDecorrelator:
-    def __init__(self, correlated_feature, data_frame):
-        self.cf = correlated_feature
-        self.df = data_frame
+    def __init__(self):
+        self.feature_dict = {}
 
-    def decorrelate(self):
-        for col in self.df:
-            coeff = np.corrcoef(self.cf, self.df[col])[1,0]
-            [gradient, intercept] = np.polyfit(self.cf, self.df[col],1)
-            new_col = self.df[col].values
-            new_col = new_col - intercept
-            new_col = new_col - (self.cf * gradient)
-            self.df[col] = new_col
-            new_coeff = np.corrcoef(self.cf, new_col)[1,0]
+    def fit(self,cf,df):
+        self.feature_dict = {}
+        for col in df:
+            [gradient, intercept] = np.polyfit(cf, df[col],1)
+
+            self.feature_dict[col] = {
+                'gradient': gradient,
+                'intercept': intercept,
+            }
+
+    def transform(self,cf,df):
+        for col in df:
+            gradient = self.feature_dict[col]['gradient']
+            intercept = self.feature_dict[col]['intercept']
+            df[col] = df[col] - intercept
+            df[col] = df[col] - (cf * gradient)
+
+            new_coeff = np.corrcoef(cf, df[col])[1,0]
             print(new_coeff)
-        return self.df
+
+        return df
